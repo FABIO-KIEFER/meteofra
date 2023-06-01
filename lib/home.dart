@@ -29,6 +29,105 @@ class AccueilState extends State<Accueil> {
     );
   }
 
+  IconData getWeatherIcon(int weatherCode) {
+    switch (weatherCode) {
+      case 0:
+        return Icons.wb_sunny;
+      case 1:
+        return Icons.wb_sunny_outlined;
+      case 2:
+        return Icons.wb_cloudy_outlined;
+      case 3:
+        return Icons.wb_cloudy_sharp;
+      case 45:
+      case 48:
+        return Icons.cloud_queue;
+      case 51:
+      case 53:
+      case 55:
+        return Icons.grain;
+      case 56:
+      case 57:
+        return Icons.ac_unit;
+      case 61:
+      case 63:
+      case 65:
+        return Icons.beach_access;
+      case 66:
+      case 67:
+        return Icons.ac_unit;
+      case 71:
+      case 73:
+      case 75:
+        return Icons.ac_unit;
+      case 77:
+        return Icons.cloud;
+      case 80:
+      case 81:
+      case 82:
+        return Icons.grain;
+      case 85:
+      case 86:
+        return Icons.ac_unit;
+      case 95:
+        return Icons.flash_on;
+      case 96:
+      case 99:
+        return Icons.grain;
+      default:
+        return Icons.help_outline;
+    }
+  }
+  String getWeatherDescription(int weatherCode) {
+    switch (weatherCode) {
+      case 0:
+        return 'Ensoleillé';
+      case 1:
+        return 'Partiellement nuageux';
+      case 2:
+        return 'Nuageux';
+      case 3:
+        return 'Très nuageux';
+
+      case 45:
+      case 48:
+        return 'Brouillard et givre';
+      case 51:
+      case 53:
+      case 55:
+        return 'Bruine';
+      case 56:
+      case 57:
+        return 'Bruine verglaçante';
+      case 61:
+      case 63:
+      case 65:
+        return 'Pluie';
+      case 66:
+      case 67:
+        return 'Pluie verglaçante';
+      case 71:
+      case 73:
+      case 75:
+        return 'Chute de neige';
+      case 77:
+        return 'Grains de neige';
+      case 80:
+      case 81:
+      case 82:
+        return 'Averses de pluie';
+      case 85:
+      case 86:
+        return 'Averses de neige';
+      case 95:
+        return 'Orage';
+      case 96:
+      case 99:
+        return 'Orage avec grêle';
+      default:
+        return 'Inconnu';
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,7 +199,7 @@ class AccueilState extends State<Accueil> {
                                   child: Text(
                                     '${city['name']}, ${city['country']}', // Afficher la ville à côté du pays
                                     style: const TextStyle(
-                                      fontFamily: 'ProximaNova',
+                                     
                                       fontSize: 18,
                                       color: Colors.white,
                                     ),
@@ -110,12 +209,29 @@ class AccueilState extends State<Accueil> {
                                 Text(
                                   '${city['weatherData']['current_weather']['temperature']}°C', // Afficher la température maximale du jour
                                   style: const TextStyle(
-                                    fontFamily: 'ProximaNova',
-                                    fontSize: 25,
+                            
+                                    fontSize: 33,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                Text(
+                                  '${getWeatherDescription(city['weatherData']['current_weather']['weathercode'])}', // Afficher la description du temps
+                                  style: const TextStyle(
+                                   
+                                    fontSize: 19,
                                     color: Colors.white,
                                   ),
                                 ),
                               ],
+                            ),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Icon(
+                              getWeatherIcon(city['weatherData']['current_weather']['weathercode']),
+                              color: Colors.purple,
+                              size: 44,
                             ),
                           ),
                         ],

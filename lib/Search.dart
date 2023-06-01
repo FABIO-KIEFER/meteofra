@@ -36,7 +36,8 @@ class SearchState extends State<Search> {
 
   Future<void> _getWeatherData(dynamic location) async {
     final response = await http.get(Uri.parse(
-        'https://api.open-meteo.com/v1/forecast?latitude=${location['latitude']}&longitude=${location['longitude']}&hourly=temperature_2m,apparent_temperature,precipitation_probability,weathercode,windspeed_10m,winddirection_10m&daily=temperature_2m_max,temperature_2m_min&current_weather=true&timezone=auto'));
+        'https://api.open-meteo.com/v1/forecast?latitude=${location['latitude']}&longitude=${location['longitude']}&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,weathercode,windspeed_10m,winddirection_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&current_weather=true&timezone=auto'));
+    print ('https://api.open-meteo.com/v1/forecast?latitude=${location['latitude']}&longitude=${location['longitude']}&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,weathercode,windspeed_10m,winddirection_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&current_weather=true&timezone=auto');
     final data = jsonDecode(response.body);
     location['weatherData'] = data;
   }
@@ -120,7 +121,7 @@ class SearchState extends State<Search> {
                             location['name'], // Get name from location object
                             style: const TextStyle(
                                 fontSize: 18,
-                                color: Colors.white,
+                                color: Colors.white
                                 ),
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -129,7 +130,7 @@ class SearchState extends State<Search> {
                             location['country'], // Get country from location object
                             style: const TextStyle(
                                 fontSize: 16,
-                                color: Colors.white,
+                                color: Colors.white
                                 ),
                           ),
                         ],
