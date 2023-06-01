@@ -1,9 +1,9 @@
-# meteofra
+# Nom/Prénom
 
 Prénom : Fabio 
 NOM : KIEFER
 
-## Getting Started
+## Fonctionnalités
 
 Les fonctionnalités y sont toutes, cependant je n'ai pas pu terminer le design par manque de temps. 
 Je peux m'en occuper demain soir en rentrant du stage si cela vous semble nécessaire. 
